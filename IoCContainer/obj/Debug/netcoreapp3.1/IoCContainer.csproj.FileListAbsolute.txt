@@ -1,0 +1,8 @@
+C:\Coding\Projects\IoCContainer\IoCContainer\bin\Debug\netcoreapp3.1\IoCContainer.deps.json
+C:\Coding\Projects\IoCContainer\IoCContainer\bin\Debug\netcoreapp3.1\IoCContainer.dll
+C:\Coding\Projects\IoCContainer\IoCContainer\bin\Debug\netcoreapp3.1\IoCContainer.pdb
+C:\Coding\Projects\IoCContainer\IoCContainer\obj\Debug\netcoreapp3.1\IoCContainer.csprojAssemblyReference.cache
+C:\Coding\Projects\IoCContainer\IoCContainer\obj\Debug\netcoreapp3.1\IoCContainer.AssemblyInfoInputs.cache
+C:\Coding\Projects\IoCContainer\IoCContainer\obj\Debug\netcoreapp3.1\IoCContainer.AssemblyInfo.cs
+C:\Coding\Projects\IoCContainer\IoCContainer\obj\Debug\netcoreapp3.1\IoCContainer.dll
+C:\Coding\Projects\IoCContainer\IoCContainer\obj\Debug\netcoreapp3.1\IoCContainer.pdb
