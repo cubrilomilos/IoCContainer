@@ -51,28 +51,56 @@ namespace IoC.Tests
             var subject = (A)Container.GetInstance(typeof(A));
             Assert.AreEqual(typeof(A), subject.GetType());
         }
-    }
-    class A { }
-    class B 
-    { 
-        public A A { get; }
 
-        public B() { }
-
-        public B(A a)
+        class A { }
+        class B
         {
-            A = a;
+            public A A { get; }
+
+            public B() { }
+
+            public B(A a)
+            {
+                A = a;
+            }
+
         }
 
-    }
-
-    public class C
-    {
-        public bool? Invoked { get; set; }
-
-        public C()
+        public class C
         {
-            Invoked = true;
+            public bool? Invoked { get; set; }
+
+            public C()
+            {
+                Invoked = true;
+            }
+        }
+    }
+    
+    [TestFixture]
+    public class Container_Register : ContainerTestBase
+    {
+        [Test]
+        public void RegisterTypeFromAnInteface()
+        {
+            Container.Register<IVehicle, Car>();
+            var subject = Container.GetInstance<IVehicle>();
+            Assert.AreEqual(typeof(Car), subject.GetType());
+        }
+
+        interface IVehicle
+        {
+            int numOfWheels { get; }
+        }
+
+        class Car : IVehicle
+        {
+            public int numOfWheels => 4;
+        }
+
+        class Truck : IVehicle
+        {
+            public int numOfWheels => 10;
         }
     }
 }
