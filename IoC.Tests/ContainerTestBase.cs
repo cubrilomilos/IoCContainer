@@ -37,6 +37,13 @@ namespace IoC.Tests
             var subject = (B)Container.GetInstance(typeof(B));
             Assert.AreEqual(typeof(A), subject.A.GetType());
         }
+
+        [Test]
+        public void AllowsAParameterlessConstructor()
+        {
+            var subject = (C)Container.GetInstance(typeof(C));
+            Assert.AreEqual(true, subject.Invoked);
+        }
     }
     class A { }
     class B 
@@ -48,6 +55,17 @@ namespace IoC.Tests
         public B(A a)
         {
             A = a;
+        }
+
+    }
+
+    public class C
+    {
+        public bool? Invoked { get; set; }
+
+        public C()
+        {
+            Invoked = true;
         }
     }
 }
