@@ -44,6 +44,13 @@ namespace IoC.Tests
             var subject = (C)Container.GetInstance(typeof(C));
             Assert.AreEqual(true, subject.Invoked);
         }
+
+        [Test]
+        public void AllowsGenericInitialization()
+        {
+            var subject = (A)Container.GetInstance(typeof(A));
+            Assert.AreEqual(typeof(A), subject.GetType());
+        }
     }
     class A { }
     class B 
