@@ -74,4 +74,16 @@ namespace IoC.Tests
             subject.Wagon.Should().BeOfType<Wagon>();
         }    
     }
+
+    public class Container_RegisterSingleton : ContainerTestBase
+    {
+        [Test]
+        public void ReturnsASingleInstance()
+        {
+            var factory = new Factory();
+            Container.RegisterSingleton(factory);
+            var subject = Container.GetInstance<Factory>();
+            subject.Should().Be(factory);
+        }
+    }
 }

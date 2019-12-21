@@ -13,12 +13,15 @@ namespace IoCContainer
         {
             _registeredTypes.Add(typeof(TInterface), () => GetInstance(typeof(TImplementation)));
         }
+        public void RegisterSingleton<T>(T obj)
+        {
+            _registeredTypes.Add(typeof(T), () => obj);
+        }
 
         public T GetInstance<T>()
         {
             return (T)GetInstance((typeof(T)));
         }
-
 
         public object GetInstance(Type type)
         {
