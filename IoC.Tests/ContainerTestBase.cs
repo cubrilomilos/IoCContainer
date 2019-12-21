@@ -88,6 +88,12 @@ namespace IoC.Tests
             Assert.AreEqual(typeof(Car), subject.GetType());
         }
 
+        [Test]
+        public void InitializeObjectWithDependencies()
+        {
+            Container.Register<IVehicle, Truck>();
+        }
+
         interface IVehicle
         {
             int numOfWheels { get; }
@@ -101,6 +107,11 @@ namespace IoC.Tests
         class Truck : IVehicle
         {
             public int numOfWheels => 10;
+        }
+
+        class Wagon : IVehicle
+        {
+            public int numOfWheels => 4;
         }
     }
 }
