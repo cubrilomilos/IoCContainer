@@ -1,4 +1,6 @@
-﻿using IoCContainer;
+﻿using Entities;
+using FluentAssertions;
+using IoCContainer;
 using NUnit.Framework;
 using ShouldBeAssertions.Core;
 
@@ -28,52 +30,28 @@ namespace IoC.Tests
         public void CreateInstanceWithNoParams()
         {
             var subject = (A) Container.GetInstance(typeof(A));
-            Assert.AreEqual(typeof(A), subject.GetType());
+            subject.Should().BeOfType<A>();
         }
 
         [Test]
         public void CreateInstanceWithParams()
         {
             var subject = (B)Container.GetInstance(typeof(B));
-            Assert.AreEqual(typeof(A), subject.A.GetType());
+            subject.A.Should().BeOfType<A>();
         }
 
         [Test]
         public void AllowsAParameterlessConstructor()
         {
             var subject = (C)Container.GetInstance(typeof(C));
-            Assert.AreEqual(true, subject.Invoked);
+            subject.Invoked.Should().BeTrue();          
         }
 
         [Test]
         public void AllowsGenericInitialization()
         {
             var subject = (A)Container.GetInstance(typeof(A));
-            Assert.AreEqual(typeof(A), subject.GetType());
-        }
-
-        class A { }
-        class B
-        {
-            public A A { get; }
-
-            public B() { }
-
-            public B(A a)
-            {
-                A = a;
-            }
-
-        }
-
-        public class C
-        {
-            public bool? Invoked { get; set; }
-
-            public C()
-            {
-                Invoked = true;
-            }
+            subject.Should().BeOfType<A>();
         }
     }
     
@@ -85,33 +63,15 @@ namespace IoC.Tests
         {
             Container.Register<IVehicle, Car>();
             var subject = Container.GetInstance<IVehicle>();
-            Assert.AreEqual(typeof(Car), subject.GetType());
+            subject.Should().BeOfType<Car>();
         }
 
         [Test]
         public void InitializeObjectWithDependencies()
         {
             Container.Register<IVehicle, Truck>();
-        }
-
-        interface IVehicle
-        {
-            int numOfWheels { get; }
-        }
-
-        class Car : IVehicle
-        {
-            public int numOfWheels => 4;
-        }
-
-        class Truck : IVehicle
-        {
-            public int numOfWheels => 10;
-        }
-
-        class Wagon : IVehicle
-        {
-            public int numOfWheels => 4;
-        }
+            var subject = (Truck)Container.GetInstance<IVehicle>();
+            subject.Wagon.Should().BeOfType<Wagon>();
+        }    
     }
 }
